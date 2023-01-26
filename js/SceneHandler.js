@@ -3,6 +3,7 @@ import { ObjectLoader } from "./ObjectLoader.js";
 import { ObjectData } from "./ObjectData.js";
 import { Collection } from "@discordjs/collection";
 import { House } from "./objects/House.js";
+import {Tree} from "./objects/Tree.js";
 
 export class SceneHandler
 {
@@ -42,6 +43,7 @@ export class SceneHandler
         this.Scene.add(directionalLight);
         const objectsToLoad = [
             new House(new Vector3(5, 0, -2), new Quaternion(45.5, .2, 25.6, 0)),
+            new Tree(new Vector3(5, 0, -2), new Quaternion(45.5, .2, 25.6, 0)),
             // new ObjectData("Parrot", "../objects/Parrot.glb", new Vector3(100, 0, 1))
         ];
         await this.AddObjects(objectsToLoad);

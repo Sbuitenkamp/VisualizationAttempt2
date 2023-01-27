@@ -5,7 +5,7 @@ export class Tree extends Object
     constructor(position, rotation)
     {
         // defaults
-        super("LogTree", "logtree.gltf", ["Wood062_1K_Color.jpg", "Wood062_1K_Normal.jpg", "Wood062_1K_Roughness.jpg"], position, rotation);
+        super("LogTree", "logtree.gltf", [], position, rotation);
     }
 
     SetTexture(model, textures) {
@@ -19,5 +19,6 @@ export class Tree extends Object
                 // if (o.name === "mesh_1") o.visible = false;
             }
         });
+        return model;
     }
 }

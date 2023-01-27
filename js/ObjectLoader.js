@@ -16,16 +16,13 @@ export class ObjectLoader
 
     async Load(objectDatas)
     {
-        // todo fix this convoluted mess
         const promises = [];
         for (const objectData of objectDatas) promises.push(objectData.LoadSelf());
         const loaded = await Promise.all(promises).catch(e => console.error(e));
         const finished = [];
         for (const loadedObject of loaded) finished.push(loadedObject.instance.SetupModel(loadedObject.objectData));
 
-
         console.log(finished.length + " object(s) loaded.");
-
         return new Collection(finished.map((obj, i) => [i, obj]));
     }
 }

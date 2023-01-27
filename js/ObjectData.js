@@ -2,9 +2,12 @@ export class ObjectData
 {
     Model;
     Textures = [];
-    constructor(model, textures)
+    Animations;
+
+    constructor(model, textures, animations)
     {
         this.Model = model;
         this.Textures = textures;
+        this.Animations = animations;
     }
 }

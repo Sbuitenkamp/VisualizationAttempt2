@@ -32,6 +32,7 @@ export class Object
             if (self.FilePath) {
                 const loadedModelData = await self.#Loader.loadAsync(self.FilePath).catch(e => reject(e));
                 loadedModel = loadedModelData.scene;
+                loadedModel.animations = loadedModelData.animations ?? [];
             } else if (self.Model) loadedModel = self.Model;
             else reject("No model available for " + typeof self);
 

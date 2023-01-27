@@ -4,6 +4,8 @@ import { Collection } from "@discordjs/collection";
 import { House } from "./objects/House.js";
 import { Terrain } from "./objects/Terrain.js";
 import {Tree} from "./objects/Tree.js";
+import {LongTree} from "./objects/LongTree.js";
+import {MidTree} from "./objects/MidTree.js";
 
 export class SceneHandler
 {
@@ -38,14 +40,16 @@ export class SceneHandler
         const objectsToLoad = [
             new House(new Vector3(6, -1, -1), new Quaternion(0, -.3, .2, 0)),
             new Terrain(new Vector3(8, -4, -2), new Quaternion(45.5,-12,0,1)),
-            new Tree(new Vector3(10, 0, 1), new Quaternion(25, .2, 25.6, 1)),
-            new Tree(new Vector3(10, 0, 2), new Quaternion(25, .2, 25.6, 1)),
-            new Tree(new Vector3(10, 0, 3), new Quaternion(25, .2, 25.6, 1)),
-            new Tree(new Vector3(10, 0, 4), new Quaternion(25, .2, 25.6, 1)),
-            new Tree(new Vector3(10, 0, 5), new Quaternion(25, .2, 25.6, 1)),
-            new Tree(new Vector3(10, 0, 6), new Quaternion(25, .2, 25.6, 1)),
-            new Tree(new Vector3(10, 0, 7), new Quaternion(25, .2, 25.6, 1)),
-            new Tree(new Vector3(10, 0, 8), new Quaternion(25, .2, 25.6, 1)),
+            new Tree(new Vector3(10, 0, -2), new Quaternion(25, .2, 25.4, 1)),
+            new Tree(new Vector3(10, 0, 0), new Quaternion(25, .2, 25.4, 1)),
+            new Tree(new Vector3(10, 0, 3), new Quaternion(25, .2, 25.4, 1)),
+            new MidTree(new Vector3(10, 0, 4), new Quaternion(25, .2, 25.4, 1)),
+            new Tree(new Vector3(10, 0, 5), new Quaternion(25, .2, 25.4, 1)),
+            new Tree(new Vector3(10, 0, 6), new Quaternion(25, .2, 25.4, 1)),
+            new LongTree(new Vector3(10, 0, 7), new Quaternion(25, 0, 25.4, 1)),
+            new Tree(new Vector3(10, 0, 8), new Quaternion(25, .2, 25.4, 1)),
+            new LongTree(new Vector3(10, 0, -3), new Quaternion(25, .2, 25.6, 1)),
+            new MidTree(new Vector3(15, -0, -1), new Quaternion(25, .2, 25.6, 1)),
         ];
         this.#LoadedObjects = await this.#Loader.Load(objectsToLoad);
         console.log(this.#LoadedObjects.get(0))

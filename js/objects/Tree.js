@@ -5,11 +5,11 @@ export class Tree extends Object
     constructor(position, rotation)
     {
         // defaults
-        super("LogTree", "logtree.gltf", [], position, rotation);
+        super("LogTree", "LogTree.glb", [], position, rotation);
     }
 
     SetTexture(model, textures) {
-        model.scale.set(1,1,1);
+        model.scale.set(.8,.8,.8);
         model.traverse(o => {
             if (o.isMesh) {
                 if (o.name === "mesh_0") o.material.map = textures[2];

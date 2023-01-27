@@ -1,7 +1,6 @@
-import { ObjectData } from "../ObjectData.js";
+import { Object } from "../Object.js";
 
-export class Tree extends ObjectData
-
+export class Tree extends Object
 {
     constructor(position, rotation)
     {

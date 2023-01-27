@@ -1,18 +1,16 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, Vector3, AmbientLight, DirectionalLight, Quaternion } from 'three';
+import { Scene, PerspectiveCamera, WebGLRenderer, Vector3, AmbientLight, DirectionalLight, Quaternion, TextureLoader } from 'three';
 import { ObjectLoader } from "./ObjectLoader.js";
-import { ObjectData } from "./ObjectData.js";
 import { Collection } from "@discordjs/collection";
 import { House } from "./objects/House.js";
+import { Terrain } from "./objects/Terrain.js";
 import {Tree} from "./objects/Tree.js";
 
 export class SceneHandler
 {
-    // private
     #Camera;
     #Loader;
     #LoadedObjects = new Collection();
 
-    // public
     Renderer;
     Scene;
 
@@ -21,17 +19,13 @@ export class SceneHandler
         this.#Camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
         this.#Camera.position.set(0,0,0)
         this.Renderer = new WebGLRenderer();
-        this.Renderer.setClearColor(0xC5C5C3);
         this.Renderer.setPixelRatio(window.devicePixelRatio);
         this.Renderer.setSize(window.innerWidth, window.innerHeight);
-
         this.#Loader = new ObjectLoader();
 
+        const textureLoader = new TextureLoader();
+        this.Scene.background = textureLoader.load("../objects/textures/world/night-skybox.jpg");
         document.body.appendChild(this.Renderer.domElement);
-    }
-
-    async AddObjects(objects) {
-        this.#LoadedObjects = await this.#Loader.Load(objects);
     }
 
     // init scene
@@ -42,15 +36,16 @@ export class SceneHandler
         this.Scene.add(light);
         this.Scene.add(directionalLight);
         const objectsToLoad = [
-            new House(new Vector3(5, 0, -2), new Quaternion(45.5, .2, 25.6, 0)),
+            new House(new Vector3(6, 0, -1), new Quaternion(0, -.3, .2, 0)),
+            new Terrain(new Vector3(8, -3, -2), new Quaternion(45.5,-12,0,1)),
             new Tree(new Vector3(5, 0, -2), new Quaternion(45.5, .2, 25.6, 0)),
-            // new ObjectData("Parrot", "../objects/Parrot.glb", new Vector3(100, 0, 1))
         ];
-        await this.AddObjects(objectsToLoad);
-
-        // console.log(this.#LoadedObjects)
-        for (const loadedObject of this.#LoadedObjects) this.Scene.add(loadedObject);
-        console.log(this.#Loader.ObjectsLoaded + " objects loaded.");
+        this.#LoadedObjects = await this.#Loader.Load(objectsToLoad);
+        console.log(this.#LoadedObjects.get(0))
+        for (const obj of this.#LoadedObjects) {
+            console.log(obj)
+            this.Scene.add(obj[1]);
+        }
     }
 
     // start animation loop

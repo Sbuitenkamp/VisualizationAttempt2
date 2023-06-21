@@ -1,15 +1,13 @@
-# 🚀 Welcome to your new awesome project!
-
-This project has been created using **webpack-cli**, you can now run
+# Project herkansing rasterizer
 
 ```
-npm run build
+vite
 ```
 
 or
 
 ```
-yarn build
+vite build
 ```
 
 to bundle your application

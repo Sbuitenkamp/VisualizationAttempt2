@@ -1,17 +1,15 @@
 # Project herkansing rasterizer
+run
 
 ```
 vite
 ```
-
-or
+for development or
 
 ```
 vite build
 ```
-
-to bundle your application
-
+for a build
 
 ### Deze scene is geinspireerd door deze foto:
  ![Winter scene inspiration](./img/inspiration.jpg)
